@@ -1,3 +1,18 @@
+# Apple Mac
+.DS_Store
+# PhpStorm
+.idea
+# VSCode
+.vscode
+# Lando
+.lando.yml
+# Ignore .env files as they are personal
+.env
+
+# Ignore UNL's unl/wdntemplates directory
+/web/wdn
+
+
 # gitignore template for Drupal 8 projects
 #
 # earlier versions of Drupal are tracked in `community/PHP/`
