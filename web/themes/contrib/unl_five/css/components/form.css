@@ -1,0 +1,227 @@
+.page-node-type-webform form.webform-submission-form {
+    margin-top: 3em;
+}
+
+.webform-element--title-inline > label {
+    display: unset;
+    padding-right: unset;
+}
+
+.form-composite.webform-fieldset--title-inline legend {
+    float: unset;
+    margin: unset;
+}
+
+.form-item .filter-guidelines {
+    position: relative;
+    font-size: .75rem;
+}
+
+.form-item .filter-list {
+    width: auto;
+}
+
+.form-item .js-form-item-text-format-value {
+    margin-bottom: 0;
+}
+
+.form-item .form-range-output-container { display: none; }
+.form-item .form-color-output { display: none; }
+.rateit .rateit-range:focus { outline: 1px dotted; }
+.webform-submission-form input.form-color {
+    margin: 0;
+    float: none !important;
+}
+
+.webform-submission-form input.form-color:focus {
+    border-color: #137cbd;
+}
+.webform-tableselect-sort .form-item {
+    margin: 0;
+}
+
+.webform-component-date select {width: auto;}
+.webform-component-webform_time select {width: auto;}
+.webform-component-managed_file input[type=file] {width: auto;}
+.form-managed-file .form-submit {
+    margin-left: 1.75em;
+}
+
+.password-strength__meter {
+    margin-top: 0.5em;
+    background-color: #ebeae4;
+}
+
+.password-strength__indicator {
+    background-color: #77b259;
+    -webkit-transition: width 0.5s ease-out;
+    transition: width 0.5s ease-out;
+}
+
+.password-strength__indicator.is-weak {
+    background-color: #e62600;
+}
+
+.password-strength__indicator.is-fair {
+    background-color: #e09600;
+}
+
+.password-strength__indicator.is-good {
+    background-color: #0074bd;
+}
+
+.password-strength__indicator.is-strong {
+    background-color: #77b259;
+}
+
+a.tabledrag-handle .handle {
+    padding:0;
+    margin-top: 0;
+    background-position: 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+
+#maincontent > .webform-submission-form:last-child {
+    margin-bottom: 1em;
+}
+
+.intl-tel-input {
+    display: flex;
+}
+
+.intl-tel-input .flag-container {
+    position: unset;
+    padding: unset;
+}
+
+.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=tel], .intl-tel-input.separate-dial-code input[type=text] {
+    padding-left: .56em;
+    padding-right: .56em;
+}
+
+.webform-multiple-table table {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.webform-multiple-table .dcf-form-group {
+    margin-bottom: 0;
+}
+
+.webform-multiple-add {
+    display: flex;
+}
+
+.webform-multiple-add .form-item {
+    margin-bottom: 0;
+}
+
+.webform-multiple-add .form-item .dcf-input-group {
+    display: inline-flex;
+}
+
+.webform-multiple-table td.webform-multiple-table--operations input {
+    display: inline-block !important;
+    height: auto;
+    width: auto;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.webform-version-5 .webform-progress-tracker.progress-tracker {
+    margin-bottom: 2.37em;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-marker {
+    height: 1.77em;
+    padding-bottom: 0;
+    width: 1.77em;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-text {
+    font-size: .63em;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-step:not(.is-active) .progress-marker,
+.webform-version-5 .webform-progress-tracker .progress-step:hover .progress-marker,
+.webform-version-5 .webform-progress-tracker .progress-step::after {
+    background-color: #6b6b68;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-step:not(:last-child)::after {
+    bottom: .84em;
+    height: 3px;
+    top: .84em;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-step .progress-text {
+    color: #6b6b68;
+    padding-top: .43em;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-step.is-active .progress-marker,
+.webform-version-5 .webform-progress-tracker .progress-step.is-active:hover .progress-marker {
+    background-color: #d00000;
+}
+
+.webform-version-5 .webform-progress-tracker .progress-step.is-active .progress-text {
+    color: inherit;
+}
+
+.webform-version-6 .webform-progress-tracker.progress-tracker {
+    margin-bottom: 2.37em;
+}
+
+
+.webform-version-6 .webform-progress-tracker .progress-marker::before {
+    height: 30px;
+    padding-bottom: 0;
+    width: 30px;
+}
+
+.webform-version-6 .progress-marker::after {
+    top: 13px;
+}
+
+.webform-version-6 .webform-progress-tracker .progress-text {
+    font-size: .63em;
+}
+
+.webform-version-6 .webform-progress-tracker .progress-step::after {
+    background-color: #6b6b68;
+}
+
+.webform-version-6 .webform-progress-tracker .progress-step.is-active .progress-text {
+    color: inherit;
+}
+
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete .progress-marker::before,
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete:hover .progress-marker::before,
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete .progress-marker::after {
+    background-color: #777;
+}
+
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete .progress-marker::before,
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete:hover .progress-marker::before,
+.webform-version-6 .webform-progress-tracker .progress-step.is-complete .progress-marker::after {
+    background-color: #d00000;
+}
+
+.webform-version-6 .progress-step.is-active .progress-marker::before {
+    background-color: #d00000;
+}
+
+.webform-flexbox {
+    margin-top: 0;
+}
+
+.webform-flex select {
+    margin-bottom: 0;
+}
+
+.dcf-form-help.description p {
+    margin-bottom: 0;
+}

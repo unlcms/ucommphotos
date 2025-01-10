@@ -1,0 +1,25 @@
+unl_five.sm:
+  label: small
+  mediaQuery: 'all and (min-width: 42.09em)'
+  weight: 0
+  multipliers:
+    - 1x
+unl_five.md:
+  label: medium
+  mediaQuery: 'all and (min-width: 56.12em)'
+  weight: 1
+  multipliers:
+    - 1x
+unl_five.lg:
+  label: large
+  mediaQuery: 'all and (min-width: 74.83em)'
+  weight: 2
+  multipliers:
+    - 1x
+unl_five.xl:
+  label: 'extra large'
+  mediaQuery: 'all and (min-width: 99.78em)'
+  weight: 3
+  multipliers:
+    - 1x
+

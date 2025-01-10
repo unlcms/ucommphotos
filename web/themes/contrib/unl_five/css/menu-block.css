@@ -1,0 +1,45 @@
+/**
+ * The .block-menu-block class is also added to the
+ * book navigation block in book-tree.html.twig so
+ * that Menu Blocks and Book Navigation can share the same styles.
+ */
+.block-menu-block .is-active {background-color: #e7f0f0;}
+
+.block-menu-block h2 {padding-left: 1.75rem; padding-right: 1.75rem;}
+
+.block-menu-block h2 a:link,
+.block-menu-block h2 a:hover,
+.block-menu-block h2 a:active,
+.block-menu-block h2 a:visited {color: #fefdfa !important;}
+
+.block-menu-block ul a {background-color: #ebebea; color: #242423; margin-bottom: 1px; padding-bottom: .5625em; padding-right: 1.75rem; padding-top: .5625em;}
+.block-menu-block ul a:hover {color: #9e0900;}
+.block-menu-block ul a.menu-item--active {color: #d00000;}
+
+.block-menu-block ul:first-child > li > a {padding-left: 1.75rem;}
+.block-menu-block ul:first-child > li > a.menu-item--active {padding-left: calc(1.75rem - 2px);}
+
+.block-menu-block ul:first-child > li > ul > li > a {padding-left: 2.5rem;}
+.block-menu-block ul:first-child > li > ul > li > a.menu-item--active {padding-left: calc(2.5rem - 2px);}
+
+.block-menu-block ul:first-child > li > ul > li > ul > li a {padding-left: 3.25rem;}
+.block-menu-block ul:first-child > li > ul > li > ul > li a.menu-item--active {padding-left: calc(3.25rem - 2px);}
+
+.block-menu-block ul:first-child > li > ul > li > ul > li > ul > li a {padding-left: 4rem;}
+.block-menu-block ul:first-child > li > ul > li > ul > li > ul > li a.menu-item--active {padding-left: calc(4rem - 2px);}
+
+.block-menu-block ul:first-child > li > ul > li > ul > li > ul > li > ul > li a {padding-left: 4.75rem;}
+.block-menu-block ul:first-child > li > ul > li > ul > li > ul > li > ul > li a.menu-item--active {padding-left: calc(4.75rem - 2px);}
+
+.block-menu-block ul:first-child > li:first-child > a {padding-top: .75em;}
+.block-menu-block ul:first-child > li:last-child > a {padding-bottom: 1em; margin-bottom: 0;}
+
+.block-menu-block li,
+.block-menu-block li.menu-item--collapsed,
+.block-menu-block li.menu-item--expanded {list-style-image: none; list-style-type: none;}
+.block-menu-block li.menu-item--collapsed > a,
+.block-menu-block li.menu-item--expanded > a {position: relative;}
+.block-menu-block li.menu-item--collapsed > a:before,
+.block-menu-block li.menu-item--expanded > a:before {position: absolute; top: 50%; transform: translate(-.75rem,-45%); font-size: .451rem; color: #6b6b68;}
+.block-menu-block li.menu-item--collapsed > a:before {content: '\25B6';}
+.block-menu-block li.menu-item--expanded > a:before {content: '\25BC';}

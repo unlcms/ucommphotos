@@ -1,0 +1,439 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\block\Entity\Block;
+use Drupal\group\Entity\GroupRelationship;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Url;
+
+/**
+ * Returns the WDN version.
+ *
+ * @return string
+ *   The WDN version.
+ */
+function unl_five_get_wdn_version() {
+  $unl_five_path = \Drupal::service('extension.list.theme')->getPath('unl_five');
+
+  return file_get_contents($unl_five_path . '/WDN_VERSION');
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function unl_five_preprocess(&$vars) {
+  // Populate global WDN object with version and directory path.
+  // The WDN object will available to all Twig templates.
+  $wdn_version_string = unl_five_get_wdn_version();
+  $vars['wdn'] = [
+    'version' => $wdn_version_string,
+    'directory' => "/wdn/templates_$wdn_version_string",
+  ];
+}
+
+/**
+ * Implements template_preprocess_html().
+ */
+function unl_five_preprocess_html(&$variables) {
+  $group = _unl_five_get_current_group();
+
+  // Swap head title variables for group.
+  if ($group) {
+    unset($variables['head_title']['name']);
+    if (_unl_five_is_request_group_front()) {
+      unset($variables['head_title']['title']);
+    } else {
+      $variables['head_title'] = array_slice($variables['head_title'], 0, 1, true) +
+        array('Group' => $group->label()) +
+        array_slice($variables['head_title'], 1, NULL, true);
+    }
+  }
+
+  // Set the <title> tag to UNL format: Page Title | Site Name | University of Nebraska–Lincoln
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('metatag')) {
+    // Remove Page Title on the front page.
+    if (\Drupal::service('path.matcher')->isFrontPage()) {
+      unset($variables['head_title']['title']);
+    }
+    // Append University of Nebraska–Lincoln to the end.
+    $site_config = \Drupal::config('system.site');
+    if ($site_config->get('name') != 'University of Nebraska–Lincoln') {
+      $variables['head_title'] = array_merge($variables['head_title'], array('UNL' => 'University of Nebraska–Lincoln'));
+    }
+    $variables['head_title'] = implode(' | ', $variables['head_title']);
+  }
+
+  // Add node id to the body class.
+  if ($nid = \Drupal::routeMatch()->getRawParameter('node')) {
+    $variables['attributes']['class'][] = 'page-node-' . $nid;
+  }
+}
+
+/**
+ * Implements template_preprocess_page().
+ */
+function unl_five_preprocess_page(&$variables) {
+  // Work around for Drupal core issue.
+  // Create a boolean variable for each region in the format has_sidebar_second
+  // Blocks employ lazy building.  This makes it difficult to determine from
+  // **Twig templates** if they will eventually produce empty content or not.
+  // Also, it appears the Twig method of {{ page.sidebar_second|render|striptags|trim }}
+  //   doesn't always work.
+  // @see https://github.com/localgovdrupal/localgov_base/blob/654e9c51d3baa45a937eba4e3ee54a17f460d070/localgov_base.theme#L40
+  // @see https://www.drupal.org/node/953034
+  // @see https://www.drupal.org/forum/support/module-development-and-code-questions/2016-04-07/drupal-8-regions-with-and-empty#comment-12149518
+  $active_theme = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+  $system_region = system_region_list($active_theme, $show = REGIONS_ALL);
+
+  foreach ($system_region as $key => $value) {
+    $region = $key;
+    $has = 'has_' . $region;
+
+    $excluded_regions = [
+      'messages',
+    ];
+
+    if (!in_array($region, $excluded_regions)) {
+      $copy = $variables['page'][$region];
+      $rendered = Drupal::service('renderer')->renderPlain($copy);
+    } else {
+      $rendered = Drupal::service('renderer')->renderPlain($variables['page'][$region]);
+    }
+    $variables[$has] = !empty(trim(strip_tags($rendered, '<drupal-render-placeholder><embed><hr><iframe><img><input><link><object><script><source><style><video>')));
+  }
+
+  // If using the group_content_menu module, remove the "Main navigation" block
+  // from the "Navigation links" region if on a page with Group context that
+  // will have a "Group Menus" menu.
+  if (\Drupal::service('module_handler')->moduleExists('group_content_menu')) {
+    $group = _unl_five_get_current_group();
+    if ($group) {
+      foreach ($variables['page']['navlinks'] as $key => $value) {
+        if (is_array($value) && array_key_exists('#weight', $value)) {
+          $block = Block::load($key);
+          if ($block->getPluginId() == 'system_menu_block:main') {
+            unset($variables['page']['navlinks'][$key]);
+          }
+        }
+      }
+    }
+  }
+
+  // Invalidate unl_five_herbie_branding block's cache if a site uses groups
+  if (\Drupal::service('module_handler')->moduleExists('group')) {
+    $group = \Drupal::entityTypeManager()->getStorage('group')->loadMultiple();
+    if ($group) {
+      // Load blocks using block_id
+      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_branding');
+      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
+      Cache::invalidateTags($cache_tags_to_invalidate);
+
+      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_contactinfo');
+      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
+      Cache::invalidateTags($cache_tags_to_invalidate);
+
+      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_relatedlinks');
+      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
+      Cache::invalidateTags($cache_tags_to_invalidate);
+    }
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function unl_five_page_attachments_alter(&$attachments) {
+  $metaToRemove = [
+    'system_meta_content_type',
+    'viewport',
+  ];
+  foreach ($attachments['#attached']['html_head'] as $key => $element) {
+    if (in_array($element[1], $metaToRemove)) {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function unl_five_preprocess_block(&$variables) {
+  // Add Menu Block class to book navigation block so that they can share CSS.
+  if ($variables['plugin_id'] == 'book_navigation') {
+    $variables['attributes']['class'][] = 'block-menu-block';
+  }
+
+  // Change Site name to the Group title and add appropriate site title link.
+  if ($variables['base_plugin_id'] == 'system_branding_block') {
+    $group = _unl_five_get_current_group();
+    if ($group) {
+      $group_id = $group->get('id')->getValue()[0]['value'];
+      $group_homepage_url = Url::fromRoute('entity.group.canonical', ['group' => $group_id]);
+      $string_url = $group_homepage_url->toString();
+
+      $variables['site_name'] = $group->label();
+      $variables['group_homepage_route'] = $string_url;
+      $variables['group_id'] = $group_id;
+      if ($group->get('group_subsite_group_affiliation')->getValue()) {
+        $variables['affiliation_name'] = $group->get('group_subsite_group_affiliation')->getValue()[0]['title'];
+        $variables['affiliation_url'] = $group->get(field_name: 'group_subsite_group_affiliation')->getValue()[0]['uri'];
+      }
+    }
+  }
+
+  // Add a class to the existing breadcrumbs block wrapper, rather than add another wrapper in the template.
+  if ($variables['plugin_id'] == 'system_breadcrumb_block') {
+    $variables['attributes']['class'][] = 'dcf-breadcrumbs-wrapper';
+  }
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function unl_five_preprocess_field(&$variables) {
+  // Search the text of text field types for usage of the 'unl-font-serif'.
+  // Load the 'unl_five_herbie/font-serif' library if found.
+  if (in_array($variables['field_type'], [
+    'text',
+    'text_long',
+    'text_with_summary',
+  ])) {
+    foreach ($variables['items'] as $item) {
+      if (strstr($item['content']['#text'], 'unl-font-serif')) {
+        $variables['#attached']['library'][] = 'unl_five/wdn-font-serif';
+        break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_book_navigation().
+ */
+function unl_five_preprocess_book_navigation(&$variables) {
+  // This theme's 'book-tree' template is for the book nav in the sidebar. That block does not make use
+  // of this preprocess function nor the 'book-navigation' template. It just uses 'book-tree'.
+  // The book navigation at the bottom of the page also calls 'book-tree' so an alternative 'book-tree' template
+  // is needed. However, its only template suggestion appends the book ID to the end. It is simplified here:
+  if (is_array($variables['tree'])) {
+    $variables['tree']['#theme'] = 'book_tree__book_toc';
+  }
+}
+
+/**
+ * Implements template_preprocess_webform_composite_address().
+ */
+function unl_five_preprocess_webform_composite_address(&$variables) {
+  $containerKey = array_search('container', $variables['element']['#theme_wrappers']);
+
+  if (in_array('fieldset', $variables['element']['#theme_wrappers']) && $containerKey !== false) {
+    unset($variables['element']['#theme_wrappers'][$containerKey]);
+  }
+}
+
+/**
+ * Get the current Group.
+ *
+ * @return Drupal\group\Entity\Group
+ */
+function _unl_five_get_current_group() {
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('group')) {
+    return NULL;
+  }
+
+  // If we're on a Group entity page.
+  $group_route_context = \Drupal::service('group.group_route_context');
+  $contexts = $group_route_context->getRuntimeContexts(['group']);
+  $group = $contexts['group']->getContextValue();
+
+  // If we're on a Node entity page.
+  $node = \Drupal::request()->attributes->get('node');
+  if ($node) {
+    if (is_numeric($node)) {
+      $node = Node::load($node);
+    }
+    $group_content_array = GroupRelationship::loadByEntity($node);
+    foreach ($group_content_array as $group_content) {
+      $group = $group_content->getGroup();
+    }
+  }
+
+  return $group;
+}
+
+/**
+ * Returns if the requested page is a Group entity and thus the front page of the group.
+ *
+ * @return bool
+ */
+function _unl_five_is_request_group_front() {
+  $group = \Drupal::request()->attributes->get('group');
+
+  return $group ? TRUE : FALSE;
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * All forms that are rendered by unl_five will be compatiable with DCF.
+ */
+function unl_five_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  // Add 'dcf-form' class to form.
+  $form['#attributes']['class'][] = 'dcf-form';
+
+  // If a Webform form, add a class indicating the major version of the
+  // Webform module.
+  if (isset($form['#webform_id'])) {
+    /** @var \Drupal\Core\Extension\ModuleExtensionList */
+    $extension_list = Drupal::service('extension.list.module');
+    if ($extension_list->exists('webform')) {
+      $extension_info = $extension_list->getExtensionInfo('webform');
+      if (strncasecmp($extension_info['version'], "8.x-5", 5) === 0) {
+        $form['#attributes']['class'][] = 'webform-version-5';
+      } elseif (strncasecmp($extension_info['version'], "6.", 2) === 0) {
+        $form['#attributes']['class'][] = 'webform-version-6';
+      }
+    }
+  }
+
+  // Target Layout Builder forms.
+  // e.g. form_id ends in '_layout_builder_form'.
+  if (strpos(strrev($form_id), strrev('_layout_builder_form')) === 0) {
+    // Add DCF button classes.
+    $form['actions']['submit']['#attributes']['class'][] = 'dcf-btn';
+    $form['actions']['submit']['#attributes']['class'][] = 'dcf-btn-primary';
+    $form['actions']['submit']['#attributes']['class'][] = 'dcf-mb-2';
+    $form['actions']['discard_changes']['#attributes']['class'][] = 'dcf-btn';
+    $form['actions']['discard_changes']['#attributes']['class'][] = 'dcf-btn-secondary';
+    $form['actions']['discard_changes']['#attributes']['class'][] = 'dcf-mb-2';
+    $form['actions']['revert']['#attributes']['class'][] = 'dcf-btn';
+    $form['actions']['revert']['#attributes']['class'][] = 'dcf-btn-secondary';
+    $form['actions']['revert']['#attributes']['class'][] = 'dcf-mb-2';
+    $form['actions']['move_sections']['#attributes']['class'][] = 'dcf-btn';
+    $form['actions']['move_sections']['#attributes']['class'][] = 'dcf-btn-secondary';
+    $form['actions']['move_sections']['#attributes']['class'][] = 'dcf-mb-2';
+    // Add margin-top to preview toggle.
+    $form['actions']['preview_toggle']['#attributes']['class'][] = 'dcf-mt-2';
+  } elseif ($form_id == 'layout_builder_discard_changes') {
+    // Add DCF button classes.
+    $form['actions']['submit']['#attributes']['class'][] = 'dcf-btn';
+    $form['actions']['submit']['#attributes']['class'][] = 'dcf-btn-secondary';
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ *
+ * All elements that are rendered by unl_five will be compatiable with DCF.
+ */
+function unl_five_preprocess_form_element(&$variables) {
+  // Add 'dcf-required' class to required elements.
+  if (isset($variables['element']['#required']) && $variables['element']['#required'] == TRUE) {
+    $variables['label']['#title'] = $variables['label']['#title'] . ' <small class="dcf-required">Required</small>';
+  }
+
+  // Add 'dcf-form-controls-inline' class as appropriate.
+  if (isset($variables['attributes']['class'])) {
+    if (is_array($variables['attributes']['class']) && in_array('webform-element--title-inline', $variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'dcf-form-controls-inline';
+    }
+  }
+
+  // Add 'dcf-form-help' class to descriptions.
+  // Elements of type 'details' are exempt.
+  if ($variables['element']['#type'] != 'details' && isset($variables['description']['content'])) {
+    $variables['description']['attributes']->addClass('dcf-form-help');
+  }
+
+  // Add 'dcf-form-group' class to all elements, except those rendered
+  // with certain parents. In these cases, the class has already been
+  // added to the parent element.
+  $exempt_parents = [
+    'checkboxes',
+    'webform_checkboxes_other',
+    'radios',
+  ];
+  $parents = $variables['element']['#parents'] ?? [];
+  if (empty(array_intersect($exempt_parents, $parents))) {
+    $variables['attributes']['class'][] = 'dcf-form-group';
+  }
+
+  // Add 'dcf-input-checkbox' class to checkboxes.
+  if ($variables['type'] == 'checkbox') {
+    // Add 'dcf-input-checkbox' class to checkboxes.
+    $variables['attributes']['class'][] = 'dcf-input-checkbox';
+  }
+
+  // Add 'dcf-input-radio' class to radios except those rendered
+  // with certain parents. In these cases, the radios are
+  // displayed as buttons, so the DCF radio styles are not appropriate.
+  $button_parents = [
+    'buttons',
+    'buttons_other',
+  ];
+  $parents = $variables['element']['#parents'] ?? [];
+  if ($variables['type'] == 'radio') {
+    if (empty(array_intersect($button_parents, $parents))) {
+      $variables['attributes']['class'][] = 'dcf-input-radio';
+    } else {
+      $variables['label']['#attributes']['class'][] = 'dcf-btn';
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_details().
+ *
+ * All details elements that are rendered by unl_five will be compatiable with DCF.
+ */
+function unl_five_preprocess_details(&$variables) {
+  // Add 'dcf-form-group' class to details element.
+  $variables['attributes']['class'][] = 'dcf-form-group';
+}
+
+/**
+ * Implements template_preprocess_fieldset().
+ *
+ * All fieldsets that are rendered by unl_five will be compatible with DCF.
+ */
+function unl_five_preprocess_fieldset(&$variables) {
+  // Fieldset elements.
+  if (is_array($variables['prefix'])) {
+    if (isset($variables['prefix']['description']['description']['#attributes'])) {
+      $variables['prefix']['description']['description']['#attributes']->addClass('dcf-form-help');
+    }
+  }
+  // Checkboxes and other composite elements.
+  elseif (is_object($variables['prefix'])) {
+    $markup = $variables['prefix']->__toString();
+    // There's no good way to do this.
+    $variables['prefix'] = Markup::create('<div class="dcf-form-help">' . $markup . '</div>');
+  }
+}
+
+/**
+ * Implements template_element_info_alter().
+ */
+function unl_five_element_info_alter(&$vars) {
+  // Add custom process function for WebformMultiple elements.
+  $vars['webform_multiple']['#process'][] = [
+    'Drupal\unl_five\Element\WebformMultiple',
+    'processWebformMultiple'
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function unl_five_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  // Support appending ?format=partial to a URL to return the
+  // main content without the UNL template wrapper.
+  $format = \Drupal::request()->query->get('format');
+  if ($format == 'partial' && in_array($hook, ['html', 'page'])) {
+    $suggestions[] = $hook . '__' . 'partial';
+  }
+}

@@ -1,0 +1,17 @@
+<nav class="dcf-breadcrumbs" id="dcf-breadcrumbs" role="navigation" aria-label="breadcrumbs">
+<!-- InstanceBeginEditable name="breadcrumbs" -->
+{% if breadcrumb %}
+  <ol>
+    {% for item in breadcrumb %}
+      <li>
+        {% if item.url %}
+          <a href="{{ item.url }}">{{ item.text }}</a>
+        {% else %}
+          {{ item.text }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}
+  <!-- InstanceEndEditable -->
+</nav>

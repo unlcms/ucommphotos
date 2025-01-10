@@ -1,0 +1,1 @@
+WDN.initializePlugin('notice');

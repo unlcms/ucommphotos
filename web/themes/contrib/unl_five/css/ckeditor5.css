@@ -1,0 +1,65 @@
+/*
+ * We can't do the following @import statements in CKEditor5 and just add in UNL's files
+ * because it no longer runs in an iframe. The editor is now part of the page so if we
+ * load UNL's CSS it will supersede the admin theme's styles on things outside CKEditor.
+   @import url('/wdn/templates_5.3/css/critical.css');
+   @import url('/wdn/templates_5.3/css/main.css');
+
+ * The following rules are copied from unl/wdntemplates with .ck-content prepended to
+ * scope them just to the editor.
+ */
+
+.ck-content {
+    --bg-btn-primary: #d00000;
+    --bg-btn-secondary: #fff;
+    --bg-btn-tertiary: transparent;
+    --b-btn-primary: #d00000;
+    --b-btn-secondary: currentColor;
+    --b-btn-tertiary: transparent;
+    --btn-primary: #fff;
+    --btn-secondary: #d00000;
+    --btn-tertiary: #d00000;
+    --link: #d00000;
+}
+
+.ck-content a {
+    color: var(--link);
+}
+
+.ck-content .dcf-btn {
+    appearance: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .84em;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: .75em 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .4s ease-out,border-color .4s ease-out,box-shadow .4s ease-out,color .4s ease-out;
+}
+
+.ck-content .dcf-btn-primary {
+    background-color: var(--bg-btn-primary);
+    border-color: var(--b-btn-primary);
+    color: var(--btn-primary);
+}
+
+.ck-content .dcf-btn-secondary {
+    background-color: var(--bg-btn-secondary);
+    border-color: var(--b-btn-secondary);
+    color: var(--btn-secondary);
+}
+
+.ck-content .dcf-btn-tertiary {
+    background-color: var(--bg-btn-tertiary);
+    border-color: var(--b-btn-tertiary);
+    color: var(--btn-tertiary);
+}
+
+.ck-content .dcf-txt-xs {font-size: .75em !important;}
+.ck-content .dcf-txt-sm {font-size: .84em !important;}
+.ck-content .dcf-txt-lg {font-size: 1.13em !important;}

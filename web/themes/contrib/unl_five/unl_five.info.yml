@@ -1,0 +1,50 @@
+name: UNLedu 5.3
+type: theme
+base theme: false
+description: 'This theme tracks the 5.x version of the UNLedu Web Framework.'
+core_version_requirement: ^9 || ^10
+
+libraries:
+  - unl_five/global-styling
+  - unl_five/idm
+  - unl_five/amd
+
+libraries-extend:
+  core/drupal.tabledrag:
+    - unl_five/dcf-tabledrag
+  layout_builder/drupal.layout_builder:
+    - unl_five/layout_builder
+
+libraries-override:
+  core/classList: false
+  core/html5shiv: false
+  core/normalize: false
+  webform/webform.element.counter:
+    js:
+      js/webform.element.counter.js: js/webform.element.counter.js
+  webform/webform.element.telephone:
+    js:
+      js/webform.element.telephone.js: js/webform.element.telephone.js
+
+ckeditor_stylesheets:
+  - css/ckeditor-iframe.css
+
+ckeditor5-stylesheets:
+  - css/ckeditor5.css
+
+regions:
+  page_top: Page top
+  page_bottom: Page bottom
+
+  header: Header
+  navlinks: Navigation links
+  hero: Hero
+  content_top: Content top
+  sidebar_first: Sidebar first
+  content: Content
+  sidebar_second: Sidebar second
+  content_bottom: Content bottom
+
+  contactinfo: Contact info
+  socialmedia: Social media
+  leftcollinks: Related links

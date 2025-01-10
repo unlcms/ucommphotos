@@ -37,7 +37,9 @@
         "drupal/core-composer-scaffold": "^10.4",
         "drupal/core-project-message": "^10.4",
         "drupal/core-recommended": "^10.4",
-        "drush/drush": "^12.5"
+        "drush/drush": "^12.5",
+        "unlcms/project-herbie-composer-plugin": "^1.1",
+        "unlcms/unl_five": "10.5.3.28"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -52,9 +54,22 @@
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "unlcms/project-herbie-composer-plugin": true
         },
         "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/UnlScriptHandler.php"
+        ]
+    },
+    "scripts": {
+      "post-drupal-scaffold-cmd": [
+          "cd web && patch -p1 < ../patches/custom-htaccess-enforce-https.patch",
+          "cd web && patch -p1 < ../patches/custom-htaccess-set-reverse-proxy-headers.patch"
+      ],
+      "install-wdn": "DrupalProject\\composer\\UnlScriptHandler::deployWdn"
     },
     "extra": {
         "drupal-scaffold": {

@@ -1,0 +1,28 @@
+{% extends "block.html.twig" %}
+{% block content %}
+  {% include wdn.directory ~ "/includes/global/site-affiliation-1.html" %}
+    <!-- InstanceBeginEditable name="affiliation" -->
+    {# 
+      If a subtheme or module provides an affiliation_name and an
+      affiliation_url, then use them for the affiliation markup;
+      otherwise, use site_slogan.
+    #}
+    {% if affiliation_name and affiliation_url %}
+      <a href="{{ affiliation_url }}">{{ affiliation_name }}</a>
+    {% elseif site_slogan %}
+      {{ site_slogan }}
+    {% endif %}
+    <!-- InstanceEndEditable -->
+  {% include wdn.directory ~ "/includes/global/site-affiliation-2.html" %}
+  {% include wdn.directory ~ "/includes/global/site-title-1.html" %}
+    <!-- InstanceBeginEditable name="titlegraphic" -->
+    {% if site_name %}
+     {% if group_homepage_route %}
+       <a href="{{ path('entity.group.canonical', {'group': group_id })}}" class="dcf-txt-h5">{{ site_name }}</a>
+     {% else %}
+       <a href="{{ path('<front>') }}" class="dcf-txt-h5">{{ site_name }}</a>
+     {% endif %}    
+   {% endif %}
+    <!-- InstanceEndEditable -->
+  {% include wdn.directory ~ "/includes/global/site-title-2.html" %}
+{% endblock %}

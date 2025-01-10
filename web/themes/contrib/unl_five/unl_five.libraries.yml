@@ -1,0 +1,57 @@
+global-styling:
+  version: VERSION
+  css:
+    component:
+      css/components/dialog.css: {}
+      css/components/form.css: {}
+      css/components/node-preview.css: {}
+      css/components/views.css: {}
+    theme:
+      css/menu-block.css: {}
+      css/style.css: {}
+
+amd:
+  version: VERSION
+  js:
+    js/amd-disable.js: { weight: -999 }
+  dependencies:
+    - unl_five/idm
+    - unl_five/messages
+
+idm:
+  version: VERSION
+  js:
+    js/idm.js: {}
+  dependencies:
+    - core/drupalSettings
+
+messages:
+  version: VERSION
+  js:
+    js/messages.js: {}
+
+dcf-tabledrag:
+  version: VERSION
+  js:
+    js/dcf-tabledrag.js: { weight: -1 }
+
+layout_builder:
+  version: VERSION
+  css:
+    theme:
+      css/layout-builder.css: {}
+
+wdn-font-serif:
+  version: VERSION
+  js:
+    js/wdn-font-serif.js: {}
+
+wdn-scroll-animations:
+  version: VERSION
+  js:
+    js/wdn-scroll-animations.js: {}
+
+wdn-card-as-link:
+  version: VERSION
+  js:
+    js/wdn-card-as-link.js: {}

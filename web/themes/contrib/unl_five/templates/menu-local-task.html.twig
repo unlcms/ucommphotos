@@ -1,0 +1,8 @@
+{% if is_active %}
+  {% set options = { '#options': { 'attributes': { 'class': ['dcf-btn', 'dcf-btn-primary', 'is-active', 'dcf-inverse'] }}} %}
+{% else %}
+  {% set options = { '#options': { 'attributes': { 'class': ['dcf-btn', 'dcf-btn-secondary'] }}} %}
+{% endif %}
+{% set link = link|merge(options) %}
+
+<li{{ attributes }}>{{ link }}</li>

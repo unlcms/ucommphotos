@@ -1,0 +1,74 @@
+/**
+ * Most css comes from the WDNTemplates project.
+ * CSS that does appear here is for CMS specific items or modifications
+ * that need to be made for WDN styles to work with CMS DOM structure.
+ */
+
+/* The exclude_node_title module empties the h1 text but leaves the empty element
+   See: https://www.drupal.org/node/2624734 */
+#pagetitle h1:empty {
+    display: none;
+}
+
+/* Removes extra margin-top due to div+h1 rules if the h1 is wrapped, such as when editor is logged in */
+#pagetitle h1 {
+    margin-top: 1em;
+}
+
+/**
+ * Fixes admin toolbar positioning during js load (fixes page width)
+ * caused by #wdn_wrapper {overflow:hidden}
+ */
+#toolbar-bar::after {
+    clear: left;
+    content: ' ';
+    display: block;
+}
+/**
+ * Fixes admin toolbar Drupal logo
+ */
+#toolbar-administration *::after,
+#toolbar-administration *::before {
+    -webkit-box-sizing: unset;
+    box-sizing: unset;
+}
+/**
+ * Fixes admin toolbar margin
+ */
+.toolbar-menu li {
+    margin-bottom: 0;
+}
+/**
+ * Fixes admin toolbar appearing below parts of the UNL red bar menu
+ */
+.toolbar-oriented .toolbar-bar {
+    z-index: 1000;
+}
+
+/* #region Fixes non-responsive width issue on Webforms */
+.dcf-form input, .dcf-form select {
+    max-width: 100%;
+}
+  
+.dcf-form fieldset {
+    min-inline-size: unset;
+} /* #endregion */
+  
+/* #region Fixes a Webform's name element fields stacking on top of each other */
+@media (min-width: 768px) {
+div.webform-flexbox div.webform-flex.webform-name__title,
+div.webform-flexbox div.webform-flex.webform-name__first,
+div.webform-flexbox div.webform-flex.webform-name__middle,
+div.webform-flexbox div.webform-flex.webform-name__last,
+div.webform-flexbox div.webform-flex.webform-name__suffix,
+div.webform-flexbox div.webform-flex.webform-name__degree {
+    flex: 0 1 auto;
+    margin-bottom: 1em;
+ }
+  
+div.webform-name div.webform-flexbox {
+    flex-wrap: wrap;
+    margin-bottom: unset;
+  }
+} /* #endregion */
+  
