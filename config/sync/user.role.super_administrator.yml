@@ -1,0 +1,9 @@
+uuid: b2ead20a-7160-43bd-8633-430b1012e0b0
+langcode: en
+status: true
+dependencies: {  }
+id: super_administrator
+label: 'Super administrator'
+weight: -6
+is_admin: true
+permissions: {  }

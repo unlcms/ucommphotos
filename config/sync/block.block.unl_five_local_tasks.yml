@@ -8,8 +8,8 @@ _core:
   default_config_hash: T0wbI6qVdThbbIqXDZFg_1VZ3_ittXBdEoUH7d7ux_E
 id: unl_five_local_tasks
 theme: unl_five
-region: content
-weight: -20
+region: navlinks
+weight: -3
 provider: null
 plugin: local_tasks_block
 settings:

@@ -1,0 +1,20 @@
+uuid: 2996b284-bc3d-4f34-9c4c-b5caeda6c5d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - unl_five
+id: unl_five_help
+theme: unl_five
+region: content_top
+weight: -4
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

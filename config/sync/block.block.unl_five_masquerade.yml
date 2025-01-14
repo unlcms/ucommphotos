@@ -1,0 +1,30 @@
+uuid: d4e0ae6b-f415-44f4-888d-14bfcbe0bbae
+langcode: en
+status: true
+dependencies:
+  module:
+    - masquerade
+    - user
+  theme:
+    - unl_five
+id: unl_five_masquerade
+theme: unl_five
+region: leftcollinks
+weight: 0
+provider: null
+plugin: masquerade
+settings:
+  id: masquerade
+  label: Masquerade
+  label_display: visible
+  provider: masquerade
+  show_unmasquerade_link: true
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator
+      super_administrator: super_administrator

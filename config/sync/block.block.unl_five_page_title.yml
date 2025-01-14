@@ -8,8 +8,8 @@ _core:
   default_config_hash: Oh72CHUkp6cj6dbrXMK2hzCsM05w9cHVoD22rMLQUfk
 id: unl_five_page_title
 theme: unl_five
-region: content
-weight: -30
+region: hero
+weight: -2
 provider: null
 plugin: page_title_block
 settings:
