@@ -1,0 +1,42 @@
+uuid: 69b3d9d7-af8d-45f1-99b6-00ec7cb56820
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.image.field_iptc_byline
+    - field.field.media.image.field_iptc_caption_abstract
+    - field.field.media.image.field_iptc_copyrightnotice
+    - field.field.media.image.field_iptc_datecreated
+    - field.field.media.image.field_iptc_keywords
+    - field.field.media.image.field_media_image
+    - image.style.medium
+    - media.type.image
+  module:
+    - image
+id: media.image.media_library
+targetEntityType: media
+bundle: image
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_iptc_byline: true
+  field_iptc_caption_abstract: true
+  field_iptc_copyrightnotice: true
+  field_iptc_datecreated: true
+  field_iptc_keywords: true
+  field_media_image: true
+  name: true
+  uid: true

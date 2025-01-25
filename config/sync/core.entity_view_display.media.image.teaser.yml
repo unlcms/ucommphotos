@@ -1,0 +1,42 @@
+uuid: 93a324f1-7a3a-4f05-8fe4-0a1e073a76cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.teaser
+    - field.field.media.image.field_iptc_byline
+    - field.field.media.image.field_iptc_caption_abstract
+    - field.field.media.image.field_iptc_copyrightnotice
+    - field.field.media.image.field_iptc_datecreated
+    - field.field.media.image.field_iptc_keywords
+    - field.field.media.image.field_media_image
+    - image.style.large
+    - media.type.image
+  module:
+    - image
+id: media.image.teaser
+targetEntityType: media
+bundle: image
+mode: teaser
+content:
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: content
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_iptc_byline: true
+  field_iptc_caption_abstract: true
+  field_iptc_copyrightnotice: true
+  field_iptc_datecreated: true
+  field_iptc_keywords: true
+  name: true
+  thumbnail: true
+  uid: true

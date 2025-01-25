@@ -1,0 +1,19 @@
+uuid: fd29dbcc-e58f-490f-ba34-1a47e7c9f229
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_iptc_byline
+    - media.type.image
+id: media.image.field_iptc_byline
+field_name: field_iptc_byline
+entity_type: media
+bundle: image
+label: 'IPTC By-line'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

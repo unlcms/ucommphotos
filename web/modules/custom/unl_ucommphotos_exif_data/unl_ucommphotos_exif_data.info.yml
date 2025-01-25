@@ -1,0 +1,7 @@
+name: UComm Photos Exif Data
+description: Extracts EXIF data and saves to fields during media upload.
+package: UNL
+type: module
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:file

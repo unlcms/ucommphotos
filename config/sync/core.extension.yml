@@ -15,18 +15,23 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  dropzonejs: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
   field_ui: 0
   file: 0
+  file_mdm: 0
   filter: 0
   help: 0
   history: 0
   image: 0
+  imagemagick: 0
   link: 0
   masquerade: 0
   media: 0
+  media_bulk_upload: 0
+  media_bulk_upload_dropzonejs: 0
   media_library: 0
   menu_link_content: 0
   menu_ui: 0
@@ -37,11 +42,13 @@ module:
   path: 0
   path_alias: 0
   shortcut: 0
+  sophron: 0
   system: 0
   taxonomy: 0
   text: 0
   toolbar: 0
   unl_cas: 0
+  unl_ucommphotos_exif_data: 0
   unl_user: 0
   update: 0
   user: 0

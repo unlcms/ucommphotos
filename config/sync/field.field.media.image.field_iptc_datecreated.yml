@@ -1,0 +1,21 @@
+uuid: f06c7bc5-4d11-4537-851a-80d3f3b77503
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_iptc_datecreated
+    - media.type.image
+  module:
+    - datetime
+id: media.image.field_iptc_datecreated
+field_name: field_iptc_datecreated
+entity_type: media
+bundle: image
+label: 'IPTC DateCreated'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

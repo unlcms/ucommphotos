@@ -1,0 +1,21 @@
+uuid: 92eaeffb-4e64-4167-a669-8c5b2464e54e
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.field_iptc_byline
+field_name: field_iptc_byline
+entity_type: media
+type: string
+settings:
+  max_length: 1023
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

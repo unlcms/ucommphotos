@@ -1,0 +1,20 @@
+uuid: aadb46f3-8760-4ccf-a70d-c97a7224067c
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - media
+id: media.field_iptc_datecreated
+field_name: field_iptc_datecreated
+entity_type: media
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

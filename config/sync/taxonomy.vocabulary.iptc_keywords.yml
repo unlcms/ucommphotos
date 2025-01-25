@@ -1,0 +1,9 @@
+uuid: 6994e504-96b9-4563-a9d4-d34fe94b33f0
+langcode: en
+status: true
+dependencies: {  }
+name: 'IPTC Keywords'
+vid: iptc_keywords
+description: null
+weight: 0
+new_revision: false

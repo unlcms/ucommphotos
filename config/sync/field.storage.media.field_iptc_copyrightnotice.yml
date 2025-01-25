@@ -1,0 +1,21 @@
+uuid: 5b958d5e-a9d2-4f8b-890d-7cc62a714123
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.field_iptc_copyrightnotice
+field_name: field_iptc_copyrightnotice
+entity_type: media
+type: string
+settings:
+  max_length: 1023
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

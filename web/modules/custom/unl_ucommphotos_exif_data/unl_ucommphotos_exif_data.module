@@ -1,0 +1,81 @@
+<?php
+
+use Drupal\file\Entity\File;
+use Drupal\file_mdm\FileMetadataManagerInterface;
+use Drupal\media\MediaInterface;
+use Drupal\taxonomy\Entity\Term;
+
+function unl_ucommphotos_exif_data_media_presave(MediaInterface $entity) {
+  if ($entity->bundle() == 'image' && $entity->hasField('field_media_image') && !$entity->get('field_media_image')->isEmpty()) {
+    $field_value = $entity->get("field_media_image")->getValue();
+
+    // Strip file extension for use as entity title/label/name.
+    $filename = $entity->get('name')->value;
+    $filename = pathinfo($filename, PATHINFO_FILENAME);
+    $entity->set('name', $filename);
+
+    // Get the IPTC data from the file.
+    // This has to be done manually because the tags are only available as
+    // IPTC:Keywords (or XMP:Subject) and are not present in the basic EXIF data.
+    $file = File::load($field_value[0]['target_id']);
+    $file_uri = $file->getFileUri();
+    $realpath = \Drupal::service('file_system')->realpath($file_uri);
+    $size = getimagesize($realpath, $info);
+    if (is_array($info)) {
+      foreach ($info as $block) {
+        $iptc = iptcparse($block);
+        if ($iptc) {
+          // By-line. Example: "Jane Doe"
+          if (isset($iptc['2#080'])) {
+            $entity->set('field_iptc_byline', $iptc['2#080'][0]);
+          }
+          // CopyrightNotice. Example: "© 2024, The Board of Regents of the University of Nebraska. All rights reserved.\r"
+          if (isset($iptc['2#116'])) {
+            $entity->set('field_iptc_copyrightnotice', $iptc['2#116'][0]);
+          }
+          // Caption-Abstract. Example: "John Doe, junior, hands a squirrel a peanut outside of Love Library. December 17, 2024. Photo by Jane Doe / University Communication and Marketing"
+          if (isset($iptc['2#120'])) {
+            $entity->set('field_iptc_caption_abstract', $iptc['2#120'][0]);
+
+            // Set alt text.
+            if (empty($field_value[0]['alt'])) {
+              $parts = explode('Photo by', $iptc['2#120'][0]);
+              $field_value[0]['alt'] = substr($parts[0], 0, 100);
+              $entity->set('field_media_image', $field_value);
+            }
+          }
+          // DateCreated. Example: "20241217"
+          if (isset($iptc['2#055'])) {
+            $date = date('Y-m-d', strtotime($iptc['2#055'][0]));
+            $entity->set('field_iptc_datecreated', $date);
+          }
+          // Keywords. Example: ["Animals","City Campus","NATURE"]
+          if (isset($iptc['2#025']) && is_array($iptc['2#025'])) {
+            $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+            foreach ($iptc['2#025'] as $iptc_keyword) {
+              $found_terms = $storage->loadByProperties([
+                'name' => $iptc_keyword,
+                'vid' => 'iptc_keywords',
+              ]);
+              $term = reset($found_terms);
+              if (!$term) {
+                $term = Term::create([
+                  'name' => $iptc_keyword,
+                  'vid' => 'iptc_keywords',
+                ]);
+                $term->save();
+              }
+              $entity->field_iptc_keywords->appendItem(['target_id' => $term->id()]);
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+
+  \Drupal::logger('unl')->info('File Uploaded!');
+}

@@ -1,0 +1,19 @@
+uuid: 9b071df0-90e5-4ef1-87e6-e3c807087285
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_iptc_caption_abstract
+    - media.type.image
+id: media.image.field_iptc_caption_abstract
+field_name: field_iptc_caption_abstract
+entity_type: media
+bundle: image
+label: 'IPTC Caption-Abstract'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

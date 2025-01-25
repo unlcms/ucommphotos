@@ -1,0 +1,12 @@
+uuid: d7d1e97d-9b48-44ce-b18f-4fc2858e87d5
+langcode: en
+status: true
+dependencies: {  }
+id: bulk_image_upload
+label: 'Bulk image upload'
+media_types:
+  image: image
+form_mode: default
+upload_location: ''
+show_alt: null
+show_title: null
