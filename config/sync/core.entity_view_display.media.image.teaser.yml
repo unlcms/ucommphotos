@@ -30,6 +30,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   created: true
   field_iptc_byline: true
@@ -37,6 +45,5 @@ hidden:
   field_iptc_copyrightnotice: true
   field_iptc_datecreated: true
   field_iptc_keywords: true
-  name: true
   thumbnail: true
   uid: true

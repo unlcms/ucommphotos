@@ -20,43 +20,43 @@ mode: default
 content:
   field_iptc_byline:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_iptc_caption_abstract:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_iptc_copyrightnotice:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_iptc_datecreated:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_iptc_keywords:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_media_image:
     type: image
@@ -69,8 +69,15 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   created: true
-  name: true
   thumbnail: true
   uid: true

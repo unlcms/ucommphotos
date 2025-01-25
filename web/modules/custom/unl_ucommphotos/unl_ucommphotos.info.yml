@@ -1,0 +1,7 @@
+name: UComm Photos
+description: Misc functionality.
+package: UNL
+type: module
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:views

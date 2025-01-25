@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function unl_ucommphotos_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  // Prevent duplicates.
+  // https://davidloor.com/2023/08/10/how-to-remove-duplicates-in-drupal-views-with-taxonomy-relationships/
+  if ($view->id() == 'photo_search') {
+    $query->addField('media_field_data', 'mid', '', ['function' => 'groupby']);
+    $query->addGroupBy('media_field_data.mid');
+  }
+}

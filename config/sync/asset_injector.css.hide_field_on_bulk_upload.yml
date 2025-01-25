@@ -1,0 +1,21 @@
+uuid: c195aa27-924c-41df-be42-4bd02b5b5cb2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: hide_field_on_bulk_upload
+label: 'Hide field on bulk upload'
+code: |-
+  #media-bulk-upload-form #edit-fields {
+  	display: none;
+  }
+media: all
+preprocess: true
+conditions:
+  current_theme:
+    id: current_theme
+    negate: false
+    theme: claro
+contexts: {  }
+conditions_require_all: true
