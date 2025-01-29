@@ -1,0 +1,20 @@
+uuid: f20c73be-d01b-465e-b203-d2bb6d384ebb
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unl_five_ucommphotos
+id: unl_five_ucommphotos_breadcrumbs
+theme: unl_five_ucommphotos
+region: hero
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

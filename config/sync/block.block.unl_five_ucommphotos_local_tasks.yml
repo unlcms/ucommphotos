@@ -1,0 +1,22 @@
+uuid: a9e7bbb7-ae2d-4f20-8aa5-1ed0f1fa4336
+langcode: en
+status: true
+dependencies:
+  theme:
+    - unl_five_ucommphotos
+_core:
+  default_config_hash: T0wbI6qVdThbbIqXDZFg_1VZ3_ittXBdEoUH7d7ux_E
+id: unl_five_ucommphotos_local_tasks
+theme: unl_five_ucommphotos
+region: navlinks
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

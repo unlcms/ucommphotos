@@ -1,0 +1,20 @@
+uuid: 09cccedc-af89-4cdb-a1b9-2eea6a6c11c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unl_five_ucommphotos
+id: unl_five_ucommphotos_mainpagecontent
+theme: unl_five_ucommphotos
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

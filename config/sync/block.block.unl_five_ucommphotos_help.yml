@@ -1,0 +1,20 @@
+uuid: 55101c0f-a2a7-4548-9f90-2f37a338f024
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - unl_five_ucommphotos
+id: unl_five_ucommphotos_help
+theme: unl_five_ucommphotos
+region: content_top
+weight: -4
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

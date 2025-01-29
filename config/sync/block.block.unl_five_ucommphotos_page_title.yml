@@ -1,0 +1,20 @@
+uuid: 4b3859e4-23e0-4497-b3d9-745f75e411e9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - unl_five_ucommphotos
+_core:
+  default_config_hash: Oh72CHUkp6cj6dbrXMK2hzCsM05w9cHVoD22rMLQUfk
+id: unl_five_ucommphotos_page_title
+theme: unl_five_ucommphotos
+region: hero
+weight: -2
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

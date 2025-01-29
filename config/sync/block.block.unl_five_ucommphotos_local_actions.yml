@@ -1,0 +1,20 @@
+uuid: 2197bad3-ef62-4394-a7fd-29497ac5cbc2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - unl_five_ucommphotos
+_core:
+  default_config_hash: ABoKnlk20KHqZRw_2Qr4EvaFvH4lnQ2nuhunHeE1JIU
+id: unl_five_ucommphotos_local_actions
+theme: unl_five_ucommphotos
+region: content_top
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

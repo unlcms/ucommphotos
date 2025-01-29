@@ -1,0 +1,25 @@
+uuid: f34f0e01-49bd-4c77-b274-1723c0e39f97
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - unl_five_ucommphotos
+id: unl_five_ucommphotos_mainnavigation
+theme: unl_five_ucommphotos
+region: navlinks
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: true
+visibility: {  }

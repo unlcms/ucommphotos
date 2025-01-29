@@ -1,0 +1,22 @@
+uuid: 9f92d177-020f-47ec-bf04-8a1ad59c1ce0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - unl_five_ucommphotos
+_core:
+  default_config_hash: aeqlWs7HwctZeZC7ADcbxfqehJzBRfZKmuZz3DsH3_4
+id: unl_five_ucommphotos_messages
+theme: unl_five_ucommphotos
+region: content_top
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }
