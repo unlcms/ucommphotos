@@ -8,7 +8,6 @@ dependencies:
   module:
     - contextual
     - dropzonejs
-    - file
     - help
     - media
     - media_bulk_upload
@@ -26,7 +25,6 @@ permissions:
   - 'access administration pages'
   - 'access content overview'
   - 'access contextual links'
-  - 'access files overview'
   - 'access help pages'
   - 'access media overview'
   - 'access shortcuts'
@@ -46,11 +44,9 @@ permissions:
   - 'create terms in iptc_keywords'
   - 'create url aliases'
   - 'delete all revisions'
-  - 'delete any file'
   - 'delete any image media'
   - 'delete any media'
   - 'delete media'
-  - 'delete own files'
   - 'delete own image media'
   - 'delete terms in iptc_keywords'
   - 'dropzone upload files'
