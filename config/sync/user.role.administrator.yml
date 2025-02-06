@@ -2,11 +2,68 @@ uuid: 6092ca35-37eb-4e36-9ad4-2b1e5078ed64
 langcode: en
 status: true
 dependencies:
+  config:
+    - media.type.image
+    - taxonomy.vocabulary.iptc_keywords
   module:
+    - contextual
     - dropzonejs
+    - file
+    - help
+    - media
+    - media_bulk_upload
+    - node
+    - path
+    - shortcut
+    - system
+    - taxonomy
+    - toolbar
 id: administrator
 label: Administrator
 weight: -7
 is_admin: null
 permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access help pages'
+  - 'access media overview'
+  - 'access shortcuts'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer media'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'bypass node access'
+  - 'create image media'
+  - 'create media'
+  - 'create terms in iptc_keywords'
+  - 'create url aliases'
+  - 'delete all revisions'
+  - 'delete any file'
+  - 'delete any image media'
+  - 'delete any media'
+  - 'delete media'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete terms in iptc_keywords'
   - 'dropzone upload files'
+  - 'edit any image media'
+  - 'edit own image media'
+  - 'edit terms in iptc_keywords'
+  - 'revert all revisions'
+  - 'update any media'
+  - 'update media'
+  - 'use bulk_image_upload bulk upload form'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
+  - 'view user email addresses'
+  - 'view vocabulary labels'

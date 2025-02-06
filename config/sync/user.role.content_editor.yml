@@ -2,11 +2,57 @@ uuid: b91e6196-cfbd-4efe-8d36-da2945093bf3
 langcode: en
 status: true
 dependencies:
+  config:
+    - media.type.image
+    - taxonomy.vocabulary.iptc_keywords
   module:
+    - contextual
     - dropzonejs
+    - file
+    - help
+    - media
+    - media_bulk_upload
+    - node
+    - shortcut
+    - system
+    - taxonomy
+    - toolbar
 id: content_editor
 label: Editor
 weight: -8
 is_admin: null
 permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access help pages'
+  - 'access media overview'
+  - 'access shortcuts'
+  - 'access site in maintenance mode'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'create image media'
+  - 'create media'
+  - 'create terms in iptc_keywords'
+  - 'delete any file'
+  - 'delete any image media'
+  - 'delete any media'
+  - 'delete media'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete terms in iptc_keywords'
   - 'dropzone upload files'
+  - 'edit any image media'
+  - 'edit own image media'
+  - 'edit terms in iptc_keywords'
+  - 'update any media'
+  - 'update media'
+  - 'use bulk_image_upload bulk upload form'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
+  - 'view user email addresses'
+  - 'view vocabulary labels'
