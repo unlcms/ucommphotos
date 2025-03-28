@@ -1,0 +1,19 @@
+.ucomm-grid-item {
+  text-align: center;
+  padding: 1em;
+}
+
+.ucomm-grid-item:has(a:hover) {
+  background: var(--bg-lightest-gray);
+}
+
+.ucomm-grid-item img {
+  width: auto;
+  max-height: 16vh;
+}
+
+.ucomm-grid-item a {
+  font-size: .8em;
+  text-decoration: none;
+}
+

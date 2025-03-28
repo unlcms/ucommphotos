@@ -1,42 +1,41 @@
-uuid: 93a324f1-7a3a-4f05-8fe4-0a1e073a76cd
+uuid: e0a3345c-7751-483f-a892-1428866ec2fb
 langcode: en
-status: true
+status: false
 dependencies:
   config:
-    - core.entity_view_mode.media.teaser
+    - core.entity_view_mode.media.full
     - field.field.media.image.field_iptc_byline
     - field.field.media.image.field_iptc_caption_abstract
     - field.field.media.image.field_iptc_copyrightnotice
     - field.field.media.image.field_iptc_datecreated
     - field.field.media.image.field_iptc_keywords
     - field.field.media.image.field_media_image
-    - image.style.large
     - media.type.image
   module:
     - image
-id: media.image.teaser
+id: media.image.full
 targetEntityType: media
 bundle: image
-mode: teaser
+mode: full
 content:
   field_media_image:
     type: image
     label: visually_hidden
     settings:
-      image_link: content
-      image_style: large
+      image_link: ''
+      image_style: ''
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   name:
     type: string
     label: hidden
     settings:
-      link_to_entity: true
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   created: true
