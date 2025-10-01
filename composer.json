@@ -88,7 +88,7 @@
       "post-drupal-scaffold-cmd": [
           "cd web && patch -p1 < ../patches/custom-htaccess-enforce-https.patch",
           "cd web && patch -p1 < ../patches/custom-htaccess-set-reverse-proxy-headers.patch",
-          "cd web && patch -p1 < ../patches/ucommphotos_redirect.patch"
+          "cd web && patch -p1 < ../patches/custom-htaccess-ucommsrvphotos-redirect.patch"
       ],
       "install-wdn": "DrupalProject\\composer\\UnlScriptHandler::deployWdn"
     },
