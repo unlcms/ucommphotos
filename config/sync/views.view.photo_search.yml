@@ -378,6 +378,19 @@ display:
         options: {  }
       empty: {  }
       sorts:
+        field_media_image_title:
+          id: field_media_image_title
+          table: media__field_media_image
+          field: field_media_image_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
         field_iptc_datecreated_value:
           id: field_iptc_datecreated_value
           table: media__field_iptc_datecreated

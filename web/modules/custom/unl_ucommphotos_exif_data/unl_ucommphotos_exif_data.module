@@ -46,7 +46,11 @@ function unl_ucommphotos_exif_data_media_presave(MediaInterface $entity) {
             }
           }
           // DateCreated. Example: "20241217"
-          if (isset($iptc['2#055'])) {
+          if (isset($iptc['2#062'])) {
+            $date = date('Y-m-d', strtotime($iptc['2#062'][0]));
+            $entity->set('field_iptc_datecreated', $date);
+          }
+          elseif (isset($iptc['2#055'])) {
             $date = date('Y-m-d', strtotime($iptc['2#055'][0]));
             $entity->set('field_iptc_datecreated', $date);
           }
