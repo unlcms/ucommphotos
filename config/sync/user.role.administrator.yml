@@ -6,6 +6,7 @@ dependencies:
     - media.type.image
     - taxonomy.vocabulary.iptc_keywords
   module:
+    - ban
     - contextual
     - dropzonejs
     - help
@@ -38,6 +39,7 @@ permissions:
   - 'administer nodes'
   - 'administer url aliases'
   - 'administer users'
+  - 'ban IP addresses'
   - 'bypass node access'
   - 'create image media'
   - 'create media'
