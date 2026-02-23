@@ -303,7 +303,7 @@ display:
           expose:
             operator_id: tid_op
             label: Tags
-            description: ''
+            description: 'Hold Ctrl (Windows) or Command (Mac) to select more than one.'
             use_operator: false
             operator: tid_op
             operator_limit_selection: false
@@ -333,7 +333,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: iptc_keywords
-          type: textfield
+          type: select
           hierarchy: false
           limit: true
           error_message: true
