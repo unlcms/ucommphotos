@@ -59,6 +59,7 @@
         "drush/drush": "^12.5",
         "enyo/dropzone": "^6.0@beta",
         "unlcms/project-herbie-composer-plugin": "^1.1",
+        "unlcms/unl_breadcrumbs": "^1.2",
         "unlcms/unl_cas": "^2",
         "unlcms/unl_five": "^10"
     },
