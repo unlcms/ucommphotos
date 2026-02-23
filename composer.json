@@ -55,11 +55,12 @@
         "drupal/imagemagick": "^4.0",
         "drupal/masquerade": "^2.0",
         "drupal/media_bulk_upload": "^3.0",
+        "drupal/pathauto": "^1.14",
         "drush/drush": "^12.5",
         "enyo/dropzone": "^6.0@beta",
         "unlcms/project-herbie-composer-plugin": "^1.1",
-        "unlcms/unl_cas": "^2.4",
-        "unlcms/unl_five": "10.5.3.28"
+        "unlcms/unl_cas": "^2",
+        "unlcms/unl_five": "^10"
     },
     "conflict": {
         "drupal/drupal": "*"

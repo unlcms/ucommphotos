@@ -3,7 +3,6 @@
  * book navigation block in book-tree.html.twig so
  * that Menu Blocks and Book Navigation can share the same styles.
  */
-.block-menu-block .is-active {background-color: #e7f0f0;}
 
 .block-menu-block h2 {padding-left: 1.75rem; padding-right: 1.75rem;}
 
@@ -11,6 +10,8 @@
 .block-menu-block h2 a:hover,
 .block-menu-block h2 a:active,
 .block-menu-block h2 a:visited {color: #fefdfa !important;}
+
+.block-menu-block ul is-active {background-color: #e7f0f0;}
 
 .block-menu-block ul a {background-color: #ebebea; color: #242423; margin-bottom: 1px; padding-bottom: .5625em; padding-right: 1.75rem; padding-top: .5625em;}
 .block-menu-block ul a:hover {color: #9e0900;}

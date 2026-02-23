@@ -39,15 +39,22 @@ function unl_five_preprocess(&$vars) {
 function unl_five_preprocess_html(&$variables) {
   $group = _unl_five_get_current_group();
 
-  // Swap head title variables for group.
   if ($group) {
+    // Make the Group ID available in the HTML template.
+    $group_id = $group->id();
+    $variables['group_id'] = $group_id;
+
+    // Swap head title variables for group. [Current Group Page | Group Label | Site Name | Nebraska]
     unset($variables['head_title']['name']);
-    if (_unl_five_is_request_group_front()) {
-      unset($variables['head_title']['title']);
-    } else {
-      $variables['head_title'] = array_slice($variables['head_title'], 0, 1, true) +
-        array('Group' => $group->label()) +
-        array_slice($variables['head_title'], 1, NULL, true);
+    // If we are not on the Group's front page (the Metatag module output works fine for group homepages).
+    if (!_unl_five_is_request_group_front()) {
+      $head_title_array = explode ("|", $variables['head_title']['title']);
+      $thirdFromEndIndex = $thirdFromEndIndex = count($head_title_array) - 2;
+      // Always add the group label before the site name and Nebraska.
+      // (Tried creating a group and group relationship for the Metatag module for this, but it wasn't working.)
+      array_splice($head_title_array, $thirdFromEndIndex, 0, $group->label());
+      $head_title_array = implode(" | ", $head_title_array);
+      $variables['head_title']['title'] = $head_title_array;
     }
   }
 
@@ -119,25 +126,6 @@ function unl_five_preprocess_page(&$variables) {
           }
         }
       }
-    }
-  }
-
-  // Invalidate unl_five_herbie_branding block's cache if a site uses groups
-  if (\Drupal::service('module_handler')->moduleExists('group')) {
-    $group = \Drupal::entityTypeManager()->getStorage('group')->loadMultiple();
-    if ($group) {
-      // Load blocks using block_id
-      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_branding');
-      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
-      Cache::invalidateTags($cache_tags_to_invalidate);
-
-      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_contactinfo');
-      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
-      Cache::invalidateTags($cache_tags_to_invalidate);
-
-      $block = \Drupal\block\Entity\Block::load('unl_five_herbie_relatedlinks');
-      $cache_tags_to_invalidate = $block->getCacheTagsToInvalidate();
-      Cache::invalidateTags($cache_tags_to_invalidate);
     }
   }
 }
@@ -359,9 +347,16 @@ function unl_five_preprocess_form_element(&$variables) {
   ];
   $parents = $variables['element']['#parents'] ?? [];
   if (empty(array_intersect($exempt_parents, $parents))) {
-    $variables['attributes']['class'][] = 'dcf-form-group';
+    if (!isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = [];
+    }
+    if (is_array($variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'dcf-form-group';
+    } 
+    elseif (is_string($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = $variables['attributes']['class'] . ' dcf-form-group';
+    }
   }
-
   // Add 'dcf-input-checkbox' class to checkboxes.
   if ($variables['type'] == 'checkbox') {
     // Add 'dcf-input-checkbox' class to checkboxes.
@@ -411,7 +406,7 @@ function unl_five_preprocess_fieldset(&$variables) {
   elseif (is_object($variables['prefix'])) {
     $markup = $variables['prefix']->__toString();
     // There's no good way to do this.
-    $variables['prefix'] = Markup::create('<div class="dcf-form-help">' . $markup . '</div>');
+    $variables['prefix'] = Markup::create('<div class="dcf-form-help dcf-mb-6">' . $markup . '</div>');
   }
 }
 

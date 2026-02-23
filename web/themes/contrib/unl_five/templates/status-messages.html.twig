@@ -21,11 +21,11 @@
         {% if messages|length > 1 %}
           <ul>
             {% for message in messages %}
-              <li><p>{{ message }}</p></li>
+              <li>{{ message }}</li>
             {% endfor %}
           </ul>
         {% else %}
-          <p>{{ messages|first }}</p>
+          {{ messages|first }}
         {% endif %}
       </div>
     </div>

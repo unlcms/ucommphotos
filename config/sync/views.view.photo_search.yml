@@ -504,7 +504,18 @@ display:
       use_ajax: false
       group_by: false
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<div class=\"dcf-bleed dcf-wrapper dcf-mt-6 dcf-pt-8 dcf-pb-8 unl-bg-lighter-gray\">\r\n<h2 class=\"dcf-mb-2\">Popular Tags</h2>\r\n<div class=\"dcf-grid-thirds@md dcf-col-gap-vw dcf-row-gap-5\">\r\n  <div>\r\n    <h3 class=\"dcf-txt-lg\"><a href=\"tags/COLLEGE\">Colleges</a></h3>\r\n    <ul>\r\n      <li><a href=\"tags/college-agricultural-sciences-and-natural-resources\">Agricultural Sciences &amp; Natural Resources</a></li>\r\n      <li><a href=\"tags/college-architecture\">Architecture</a></li>\r\n      <li><a href=\"tags/college-arts-and-sciences\">Arts &amp; Sciences</a></li>\r\n      <li><a href=\"tags/college-business-administration\">College of Business</a></li>\r\n      <!--<li><a href=\"categories/Dentistry\">Dentistry</a></li>-->\r\n      <li><a href=\"tags/college-education-and-human-sciences\">Education &amp; Human Sciences</a></li>\r\n      <li><a href=\"tags/college-engineering-and-technology\">Engineering</a></li>\r\n      <li><a href=\"tags/college-fine-and-performing-arts\">Fine &amp; Performing Arts</a></li>\r\n      <li><a href=\"tags/grad-graduate-studies\">Graduate Studies</a></li>\r\n      <li><a href=\"tags/college-journalism\">Journalism and Mass Communications</a></li>\r\n      <li><a href=\"tags/college-law\">Law</a></li>\r\n      <li><a href=\"tags/ulib-university-libraries\">Libraries</a></li>\r\n      <!--<li><a href='categories/Nursing'>Nursing</a></li>-->\r\n    </ul>\r\n  </div>\r\n  \r\n  <div>\r\n    <h3 class=\"dcf-txt-lg\">Learning and Teaching</h3>\r\n    <ul>\r\n      <li><a href=\"tags/classroom\">Classroom</a></li>\r\n      <li><a href=\"tags/lab\">Laboratory</a></li>\r\n    </ul> \r\n    <h3 class=\"dcf-txt-lg\"><a href=\"tags/seasonal-scenes\">Seasonal Scenes</a></h3>\r\n    <ul>\r\n      <li><a href=\"tags/fall\">Fall</a></li>\r\n      <li><a href=\"tags/winter\">Winter</a></li>\r\n      <li><a href=\"tags/spring\">Spring</a></li>\r\n      <li><a href=\"tags/summer\">Summer</a></li>\r\n    </ul> \r\n    <h3 class=\"dcf-txt-lg\"><a href=\"tags/student-life\">Student Life</a></h3>\r\n    <ul>\r\n      <li><a href=\"tags/fans\">Fans</a></li>\r\n      <li><a href=\"tags/greek\">Greek</a></li>\r\n      <li><a href=\"tags/housing\">Housing</a></li>\r\n      <li><a href=\"tags/studying\">Studying</a></li>\r\n      <li><a href=\"tags/w-faculty-staff\">With Faculty-Staff</a></li>\r\n    </ul>\r\n  </div>\r\n  <div>\r\n    <h3 class=\"dcf-txt-lg\">Other</h3>\r\n    <ul>\r\n      <li><a href=\"tags/aerial\">Aerials</a></li>\r\n      <li><a href=\"tags/university-buildings\">Buildings</a></li>\r\n      <li><a href=\"tags/campus-beauty-scenery\">Campus Beauty Scenery</a></li>\r\n      <li><a href=\"tags/chancellor\">Chancellor</a></li>\r\n      <li><a href=\"tags/city-campus\">City Campus</a></li>\r\n      <li><a href=\"tags/commencement\">Commencement</a></li>\r\n      <li><a href=\"tags/east-campus\">East Campus</a></li>\r\n      <li><a href=\"tags/research\">Research</a></li>\r\n      <li><a href=\"tags/memorial-stadium\">Memorial Stadium</a></li>\r\n      <li><a href=\"tags/art-sculpture\">Sculptures and Fountains</a></li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n<div class=\"dcf-txt-right dcf-d-block\"><a href=\"tags\">Explore all tags</a> or <a href=\"tags/multi-browse\">try the Multi-Tag Browser</a></div>\r\n</div>"
+          tokenize: false
       display_extenders: {  }
     cache_metadata:
       max-age: -1

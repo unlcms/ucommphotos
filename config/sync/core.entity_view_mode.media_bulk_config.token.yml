@@ -1,0 +1,11 @@
+uuid: 51eb0b7b-c49b-42c4-accc-fcd46be818f0
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_bulk_upload
+id: media_bulk_config.token
+label: Token
+description: ''
+targetEntityType: media_bulk_config
+cache: true

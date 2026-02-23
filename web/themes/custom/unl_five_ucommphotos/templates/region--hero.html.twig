@@ -1,0 +1,26 @@
+{%
+  set classes = [
+  'region',
+  'region-' ~ region|clean_class,
+  'dcf-hero',
+  'dcf-hero-default',
+]
+%}
+<!-- InstanceBeginEditable name="hero" -->
+<div{{ attributes.addClass(classes) }}>
+  <!-- InstanceEndEditable -->
+  <div class="dcf-hero-group-1">
+    {{ elements.unl_five_ucommphotos_breadcrumbs }}
+    <header class="dcf-page-title" id="dcf-page-title">
+      <!-- InstanceBeginEditable name="pagetitle" -->
+      {{ elements.unl_five_ucommphotos_page_title }}
+      <!-- InstanceEndEditable -->
+    </header>
+    <!-- InstanceBeginEditable name="herogroup1" -->
+    <!-- InstanceEndEditable -->
+  </div>
+  <!-- InstanceBeginEditable name="herogroup2" -->
+  <div class="dcf-hero-group-2">
+  </div>
+  <!-- InstanceEndEditable -->
+</div>

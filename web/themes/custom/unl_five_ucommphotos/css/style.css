@@ -15,5 +15,6 @@
 .ucomm-grid-item a {
   font-size: .8em;
   text-decoration: none;
+  color: var(--body);
 }
 
