@@ -2,7 +2,7 @@ diff --git a/.htaccess b/.htaccess
 index 0d8a283..622f899 100644
 --- a/.htaccess
 +++ b/.htaccess
-@@ -189,3 +189,22 @@ AddEncoding gzip svgz
+@@ -189,3 +189,30 @@ AddEncoding gzip svgz
    # Disable Proxy header, since it's an attack vector.
    RequestHeader unset Proxy
  </IfModule>
