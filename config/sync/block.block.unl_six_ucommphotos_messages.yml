@@ -1,15 +1,15 @@
-uuid: 43fea7ea-4231-4041-bf60-0f16d2f56d30
+uuid: 56d888fe-1895-4058-9edc-653cd2ff3b73
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - unl_five
+    - unl_six_ucommphotos
 _core:
   default_config_hash: aeqlWs7HwctZeZC7ADcbxfqehJzBRfZKmuZz3DsH3_4
-id: unl_five_messages
-theme: unl_five
+id: unl_six_ucommphotos_messages
+theme: unl_six_ucommphotos
 region: content_top
 weight: -3
 provider: null

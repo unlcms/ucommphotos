@@ -1,0 +1,4 @@
+/* Hide select box drop down arrow on multiselect */
+#views-exposed-form-tag-browser-page-1 #edit-tid {
+  background-image: none
+}

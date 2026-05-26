@@ -65,6 +65,6 @@ module:
 theme:
   stark: 0
   claro: 0
-  unl_five: 0
-  unl_five_ucommphotos: 0
+  unl_six: 0
+  unl_six_ucommphotos: 0
 profile: minimal

@@ -1,15 +1,15 @@
-uuid: 142e4c02-2d77-4fb9-bd04-e555e01f5323
+uuid: 6d985a19-cf5e-4701-afb6-dc6877a3a5d6
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - unl_five
+    - unl_six_ucommphotos
 _core:
   default_config_hash: sG8t_FghbUscJ-GrnQ8zs_vx5YM4bJCfntrK-J5HcAY
-id: unl_five_branding
-theme: unl_five
+id: unl_six_ucommphotos_branding
+theme: unl_six_ucommphotos
 region: header
 weight: -4
 provider: null

@@ -1,13 +1,13 @@
-uuid: 09cccedc-af89-4cdb-a1b9-2eea6a6c11c7
+uuid: 336f440c-e9e5-4835-9b0d-5ab6b25bb957
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - unl_five_ucommphotos
-id: unl_five_ucommphotos_mainpagecontent
-theme: unl_five_ucommphotos
+    - unl_six_ucommphotos
+id: unl_six_ucommphotos_mainpagecontent
+theme: unl_six_ucommphotos
 region: content
 weight: 0
 provider: null
