@@ -10,6 +10,7 @@
 .ucomm-grid-item img {
   width: auto;
   max-height: 16vh;
+  margin: auto;
 }
 
 .ucomm-grid-item a {
