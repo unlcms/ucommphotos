@@ -7413,22 +7413,22 @@
         },
         {
             "name": "unlcms/unl_cas",
-            "version": "2.7",
+            "version": "2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/unlcms/unl_cas.git",
-                "reference": "ce8d2118e7d548289714f4a41142fcca62b55848"
+                "reference": "20d9da474add0ef9a1a49ee309b6d1d9748813fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unlcms/unl_cas/zipball/ce8d2118e7d548289714f4a41142fcca62b55848",
-                "reference": "ce8d2118e7d548289714f4a41142fcca62b55848",
+                "url": "https://api.github.com/repos/unlcms/unl_cas/zipball/20d9da474add0ef9a1a49ee309b6d1d9748813fe",
+                "reference": "20d9da474add0ef9a1a49ee309b6d1d9748813fe",
                 "shasum": ""
             },
             "require": {
-                "drupal/cas": "^2.0",
-                "drupal/core": "^8 || ^9 || ^10",
-                "unlcms/unl_user": "^1.0.0"
+                "drupal/cas": "^2.0 || ^3.0",
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "unlcms/unl_user": "^1.0"
             },
             "type": "drupal-module",
             "notification-url": "https://packagist.org/downloads/",
@@ -7442,9 +7442,9 @@
             "description": "UNL customizations for use with the CAS and UNL User modules.",
             "support": {
                 "issues": "https://github.com/unlcms/unl_cas/issues",
-                "source": "https://github.com/unlcms/unl_cas/tree/2.7"
+                "source": "https://github.com/unlcms/unl_cas/tree/2.9"
             },
-            "time": "2026-02-16T22:17:31+00:00"
+            "time": "2026-05-05T19:12:08+00:00"
         },
         {
             "name": "unlcms/unl_five",
@@ -7514,16 +7514,16 @@
         },
         {
             "name": "unlcms/unl_user",
-            "version": "1.7",
+            "version": "1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/unlcms/unl_user.git",
-                "reference": "a39d7d81296b4670343c3f42756df8f1274319e6"
+                "reference": "055a395b0ac2fa09e5882b31ad6773aeb078b517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unlcms/unl_user/zipball/a39d7d81296b4670343c3f42756df8f1274319e6",
-                "reference": "a39d7d81296b4670343c3f42756df8f1274319e6",
+                "url": "https://api.github.com/repos/unlcms/unl_user/zipball/055a395b0ac2fa09e5882b31ad6773aeb078b517",
+                "reference": "055a395b0ac2fa09e5882b31ad6773aeb078b517",
                 "shasum": ""
             },
             "require": {
@@ -7547,9 +7547,9 @@
             "description": "Populate user data with values from LDAP & allow searching for users to add.",
             "support": {
                 "issues": "https://github.com/unlcms/unl_user/issues",
-                "source": "https://github.com/unlcms/unl_user/tree/1.7"
+                "source": "https://github.com/unlcms/unl_user/tree/1.9"
             },
-            "time": "2024-10-01T19:07:31+00:00"
+            "time": "2026-03-06T21:51:29+00:00"
         },
         {
             "name": "webflo/drupal-finder",
