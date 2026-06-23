@@ -2,7 +2,7 @@ diff --git a/.htaccess b/.htaccess
 index 0d8a283..622f899 100644
 --- a/.htaccess
 +++ b/.htaccess
-@@ -189,3 +189,30 @@ AddEncoding gzip svgz
+@@ -189,3 +189,40 @@ AddEncoding gzip svgz
    # Disable Proxy header, since it's an attack vector.
    RequestHeader unset Proxy
  </IfModule>
@@ -23,6 +23,7 @@ index 0d8a283..622f899 100644
 +SetEnvIf User-Agent "Googlebot" bad_user
 +SetEnvIf User-Agent "GPTBot" bad_user
 +SetEnvIf User-Agent "meta-externalagent" bad_user
++SetEnvIf User-Agent "meta-webindexer" bad_user
 +SetEnvIf User-Agent "OAI-AdsBot" bad_user
 +SetEnvIf User-Agent "OAI-SearchBot" bad_user
 +SetEnvIf User-Agent "PerplexityBot" bad_user
@@ -30,6 +31,15 @@ index 0d8a283..622f899 100644
 +SetEnvIf User-Agent "Pinterestbot" bad_user
 +SetEnvIf User-Agent "SeekportBot" bad_user
 +SetEnvIf User-Agent "SemrushBot" bad_user
++SetEnvIf User-Agent "SleepBot" bad_user
 +SetEnvIf User-Agent "Sogou" bad_user
 +SetEnvIf User-Agent "TikTokSpider" bad_user
 +Deny from env=bad_user
++
++<IfModule mod_rewrite.c>
++    RewriteEngine On
++
++    # Block Chrome < 140
++    RewriteCond %{HTTP_USER_AGENT} (Chrome|CriOS)/([0-9]{1,2}|1[0-3][0-9])\. [NC]
++    RewriteRule ^ - [F,L]
++</IfModule>
